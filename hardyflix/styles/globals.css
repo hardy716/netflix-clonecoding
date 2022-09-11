@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* https://imkh.dev/vue-tailwind-rule/ */
+/* https://velog.io/@jinsunkimdev/React에서-TailwindCSS-사용-시-warning-Unknown-at-rule-tailwind-css */
+
+/* html, body, heading */
+@layer base {
+    body {
+        @apply bg-black text-white;
+    }
+
+    /* 헤더 상단 고정  */
+    header {
+        @apply fixed top-0 z-50 flex w-full items-center justify-between 
+        px-4 py-4 transition-all lg:px-10 lg:py-6;
+    }
+}
+
+/* custom classNames */
+@layer components {
+    .headerLink {
+        @apply cursor-pointer text-sm font-light text-gray-200 transition duration-100
+        hover:text-gray-400;
+    }
+
+    .bannerButton {
+        @apply flex items-center gap-x-2 rounded px-5 py-1.5 text-sm font-semibold transition
+        hover:opacity-75 md:py-2.5 md:px-8 md:text-xl;
+    }
+
+    .input {
+        @apply w-full rounded bg-red-100 px-5 py-3.5 placeholder-gray-600 outline-none
+        focus:bg-red-300 focus:text-black;
+    }
+}
