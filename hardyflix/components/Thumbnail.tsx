@@ -13,7 +13,7 @@ function Thumbnail({movie}: Props) {
     ease-out sm:h-24 md:h-36 lg:h-48'>
       {/* 아래 글자 길이만큼 너비가 정해짐..? */}
       {/* 텍스트 스판 태그...? */}
-      bbbbbbbbbbbbbbbbbbb
+      aaaaaaaaaaaaaaaaaaaaaaa
       <Image
         src={`${baseUrl}w500${movie.backdrop_path || movie.poster_path}`}
         className="rounded-sm object-cover md:rounded"
