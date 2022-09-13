@@ -33,7 +33,7 @@ const Home= ({
   const { logout, loading } = useAuth()
 
 
-  // if (loading) return null
+  if (loading) return null
 
   return (
     <div className="relative h-screen bg-gradient-to-b from-gray-900/10
