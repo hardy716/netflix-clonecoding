@@ -6,7 +6,10 @@
     "start": "next start"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
     "@heroicons/react": "^1.0.6",
+    "@mui/material": "^5.10.5",
     "autoprefix": "^1.0.1",
     "autoprefixer": "^10.4.8",
     "firebase": "^9.9.4",
@@ -17,6 +20,8 @@
     "react-dom": "^18.0.0-rc.3",
     "react-hook-form": "^7.35.0",
     "react-icons": "^4.4.0",
+    "react-player": "^2.10.1",
+    "recoil": "^0.7.5",
     "tailwind-scrollbar-hide": "^1.1.7",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
   },

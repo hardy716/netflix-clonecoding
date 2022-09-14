@@ -1,9 +1,11 @@
-import Image from 'next/Image'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { baseUrl } from '../constants/movie'
 import { Movie } from '../typings'
 import { FaPlay } from 'react-icons/fa'
 import { InformationCircleIcon } from '@heroicons/react/solid'
+import { modalState, movieState } from '../atoms/modalAtom'
+import { useRecoilState } from 'recoil'
 
 interface Props {
     netflixOriginals: Movie[]
@@ -11,6 +13,8 @@ interface Props {
 
 function Banner({netflixOriginals}: Props) {
   const [movie, setMovie] = useState<Movie | null>(null)
+  const [showModal, setShowModal] = useRecoilState(modalState)
+  const [currentMovie, setCurrentMovie] = useRecoilState(movieState)
 
 //   랜덤으로 메인 movie set
   useEffect(() => {
@@ -42,7 +46,13 @@ function Banner({netflixOriginals}: Props) {
         <button className="relative bannerButton left-5 h-10 w-30 bg-white text-black">
           <FaPlay className='h-4 w-4 text-red-500 md:h-4.5 md:w-4.5'/>Play
         </button>
-        <button className="relative bannerButton h-10 w-30 left-20 text-1xl bg-gray-500">
+        <button 
+          className="relative bannerButton h-10 w-30 left-20 text-1xl bg-gray-500"
+          onClick={()=> {
+            setCurrentMovie(movie)
+            setShowModal(true)
+          }}
+        >
           <InformationCircleIcon className='h-5 w-5 md:h-8 md:w-8' /> More Info 
         </button>
       </div>
