@@ -52,17 +52,16 @@ const [muted, setMuted] = useState(true)
     <MuiModal 
       open={showModal} 
       onClose={handleClose} 
-      className="fixed !top-7 left-0 right-0 z-50 mx-auto w-full max-w-5xl overflow-hidden overflow-y-scroll rounded-md scrollbar-hide">
+      className="fixed top-20 left-0 right-0 z-50 mx-auto w-full max-w-5xl overflow-hidden overflow-y-scroll rounded-md scrollbar-hide">
       <>
         <button 
           onClick={handleClose}
-          className="modalButton absolute right-5 top-5 !z-40 h-9 w-9 border-none 
-          bg-black hover:bg-black"
-        >
+          className="modalButton absolute top-5 right-12 z-10"  
+        > 
           <XIcon className="h-6 w-6" />
         </button>
 
-        <div className="relative pt-56">
+        <div className="relative pt-60">
           <ReactPlayer
             url={`https://www.youtube.com/watch?v=${trailer}`}
             width="100%"
@@ -70,15 +69,17 @@ const [muted, setMuted] = useState(true)
             style={{ position: 'absolute', top: '0', left: '0' }}
             playing
             muted={muted}
+            origin="localhost:3000"
           />
-          <div className="absolute bottom-10 flex w-full items-center justify-between px-10">
+          <div className="relative -bottom-5 flex w-full items-center justify-between px-10">
             <div className="flex space-x-2">
               <button className="flex items-center gap-x-2 rounded bg-white px-8 text-xl font-bold text-black transition hover:bg-white">
                 <FaPlay className="h-7 w-7 text-black" />
                 Play            
               </button>
 
-              <button className="modalButton">
+              <button 
+                className="modalButton">
                 <PlusIcon className="h-7 w-7" />
               </button>
 
@@ -86,6 +87,7 @@ const [muted, setMuted] = useState(true)
                 <ThumbUpIcon className="h-7 w-7" />
               </button>
             </div>
+
           <button
             className="modalButton"
             onClick={() => setMuted(!muted)}
@@ -99,7 +101,7 @@ const [muted, setMuted] = useState(true)
           </div>
         </div>
 
-        <div className="flex space-x-16 rounded-b-md bg-black px-10 py-8"> 
+        <div className="flex bottomspace-x-16 rounded-b-md bg-black px-10 py-8"> 
           <div className="space-y-6 text-lg">
             <div className="flex items-center space-x-2 text-sm">
               <p className="font-semibold text-green-400">
@@ -112,23 +114,24 @@ const [muted, setMuted] = useState(true)
                 HD
               </div>
             </div>
+            
+            <div className="flex flex-row font-light space-x-5 text-sm">
+              <div>
+                <span className="font-semibold">[Genres]  </span>
+                {genres.map((genre) => genre.name).join(', ')}
+              </div>
+              <div>
+                <span className="font-semibold">[Original language]  </span>
+                {movie?.original_language}
+              </div>
+              <div>
+                <span className="font-semibold">[Total votes]  </span>
+                {movie?.vote_count}
+              </div>
+            </div>
 
             <div className="flex flex-col gap-x-10 gap-y-4 font-light md:flex-row">
               <p className="w-5/6">{movie?.overview}</p>
-              <div className="flex flex-col space-y-3 text-sm">
-                <div>
-                  <span className="text-white">[Genres] </span>
-                  {genres.map((genre) => genre.name).join(', ')}
-                </div>
-                <div>
-                  <span className="text-white">[Original language] </span>
-                  {movie?.original_language}
-                </div>
-                <div>
-                  <span className="text-white">[Total votes] </span>
-                  {movie?.vote_count}
-                </div>
-              </div>
             </div>
           </div>
         </div>
