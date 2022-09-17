@@ -15,18 +15,35 @@ function Banner({netflixOriginals}: Props) {
   const [movie, setMovie] = useState<Movie | null>(null)
   const [showModal, setShowModal] = useRecoilState(modalState)
   const [currentMovie, setCurrentMovie] = useRecoilState(movieState)
+  const [isScrolled, setIsScrolled] = useState(false)
 
 //   랜덤으로 메인 movie set
   useEffect(() => {
     setMovie(netflixOriginals[Math.floor(Math.random() * netflixOriginals.length)])
   }, [netflixOriginals])
-
   console.log(movie)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true)
+      } else {
+        setIsScrolled(false)
+      }
+    }
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  },[])
 
   return (
     <div className="flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12">
-        {/* absolute 인자가 없으면 이미지만, 있으면 텍스트만 생성, 이외에는 적용도 되지 않아서 나머지를 relative 처리 */}
-      <div className="fixed top-0 left-0 right-0 w-screen h-screen">
+      {/* 스크롤되면 배너 이미지 pop */}
+      <div className= {`${!isScrolled && "fixed top-0 left-0 right-0 w-screen h-full"} ${isScrolled && "fixed top-0 left-0 right-0 w-screen h-1/12"}`}>
+      {/* "fixed top-0 left-0 right-0 w-screen h-3/5" */}
+     
       {/* sm:h-1/5 md:h-1/4 lg:-z-10 w-1/1 */}
         <Image 
           src={`${baseUrl}original${movie?.backdrop_path || movie?.poster_path}`}
@@ -34,13 +51,15 @@ function Banner({netflixOriginals}: Props) {
           objectFit="cover" 
         />
       </div>
-
-      <h1 className="relative text-2xl font-bold left-5 md:text-4xl lg:text-7xl z-10">
-        {movie?.title || movie?.name || movie?.original_name}
-      </h1>
-      <p className="relative max-w-xs text-xs text-shadow-md left-5 md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl">
-        {movie?.overview}
-      </p>
+      
+      <div>
+        <h1 className="relative text-2xl font-bold left-5 md:text-4xl lg:text-7xl z-10">
+          {movie?.title || movie?.name || movie?.original_name}
+        </h1>
+        <p className="relative max-w-xs text-xs text-shadow-md left-5 md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl">
+          {movie?.overview}
+        </p>
+      </div>
 
       <div className='flex flex-row'>
         <button className="relative bannerButton left-5 h-10 w-30 bg-white text-black">

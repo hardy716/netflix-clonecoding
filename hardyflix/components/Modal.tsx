@@ -73,10 +73,10 @@ const [muted, setMuted] = useState(true)
           />
           <div className="relative -bottom-5 flex w-full items-center justify-between px-10">
             <div className="flex space-x-2">
-              <button className="flex items-center gap-x-2 rounded bg-white px-8 text-xl font-bold text-black transition hover:bg-white">
+              {/* <button className="flex items-center gap-x-2 rounded bg-white px-8 text-xl font-bold text-black transition hover:bg-white">
                 <FaPlay className="h-7 w-7 text-black" />
                 Play            
-              </button>
+              </button> */}
 
               <button 
                 className="modalButton">
@@ -105,7 +105,8 @@ const [muted, setMuted] = useState(true)
           <div className="space-y-6 text-lg">
             <div className="flex items-center space-x-2 text-sm">
               <p className="font-semibold text-green-400">
-                {movie!.vote_average * 10}% Match
+                {/* 소수점 지정하기 */}
+                {(movie!.vote_average * 10).toFixed(1)}% Match
               </p>
               <p className="font-light">
                 {movie?.release_date || movie?.first_air_date}
@@ -141,3 +142,6 @@ const [muted, setMuted] = useState(true)
 }
 
 export default Modal
+
+
+// 추천 리스트추가 검색 결제 재생 구현 전
