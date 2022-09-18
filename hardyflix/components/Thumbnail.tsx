@@ -24,15 +24,18 @@ function Thumbnail({movie}: Props) {
       {/* utils.js?e7ff:97 Image with src "https://image.tmdb.org/t/p/w500/jsoz1HlxczSuTx0mDl2h0lxy36l.jpg" was detected as the Largest Contentful Paint (LCP). Please add the "priority" property if this image is above the fold.
       Read more: https://nextjs.org/docs/api-reference/next/image#priority */}
         aaaaaaaaaaaaaaaaaaaaaaa
-        <Image
-          // src={`${baseUrl}w500${movie.backdrop_path || movie.poster_path}`}
-        // className="rounded-sm object-cover md:rounded"
-        src={`https://image.tmdb.org/t/p/w500${
-                    movie.backdrop_path || movie.poster_path
-                }`}
-                className="rounded-sm object-cover md:rounded"
-        layout="fill"
-      />
+        <span>
+          <Image
+            // src={`${baseUrl}w500${movie.backdrop_path || movie.poster_path}`}
+          // className="rounded-sm object-cover md:rounded"
+          src={`${baseUrl}w500${
+                      movie.backdrop_path || movie.poster_path
+                  }`}
+                  className="rounded-sm object-cover md:rounded"
+          layout="fill"
+          />
+        </span>
+        
     </div>
   )
 }
